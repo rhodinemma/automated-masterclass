@@ -12,6 +12,7 @@ public class App {
         WebDriver driver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver","chromedriver.exe");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().window().maximize();
         driver.get("https://www.wikipedia.org/");
 
         // Using Locators in Selenium
@@ -37,7 +38,8 @@ public class App {
 
         System.out.println("Time 3 spent using css selector" + (end-start));*/
 
-        WebElement titleOfWebPage = driver.findElement(By.cssSelector("#www-wikipedia-org > div.central-textlogo > h1 > span"));
+        // Retrieving text from webpage
+        /*WebElement titleOfWebPage = driver.findElement(By.cssSelector("#www-wikipedia-org > div.central-textlogo > h1 > span"));
         String titleText = titleOfWebPage.getText();
         String expectedText = "Wikipedia";
         if(titleText.equals(expectedText)){
@@ -45,6 +47,20 @@ public class App {
         }
         else{
             System.out.println("Test failed");
+            driver.close();
+            throw new Exception();
+        }*/
+
+        // Clicking on a webpage
+        WebElement englishButton =  driver.findElement(By.id("js-link-box-en"));
+        englishButton.click();
+        String expectedTitle = "Welcome to Wikipedia,";
+        WebElement titleOfEnglishButton = driver.findElement(By.id("mp-welcome"));
+        if(titleOfEnglishButton.getText().equals(expectedTitle)){
+            System.out.println("Test passed!");
+        }
+        else{
+            System.out.println("Test failed!");
             driver.close();
             throw new Exception();
         }
