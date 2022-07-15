@@ -52,7 +52,7 @@ public class App {
         }*/
 
         // Clicking on a webpage
-        WebElement englishButton =  driver.findElement(By.id("js-link-box-en"));
+        /*WebElement englishButton =  driver.findElement(By.id("js-link-box-en"));
         englishButton.click();
         String expectedTitle = "Welcome to Wikipedia,";
         WebElement titleOfEnglishButton = driver.findElement(By.id("mp-welcome"));
@@ -63,7 +63,14 @@ public class App {
             System.out.println("Test failed!");
             driver.close();
             throw new Exception();
-        }
+        }*/
+
+        // Sending text to Selenium driver
+        WebElement searchBox = driver.findElement(By.id("searchInput"));
+        String searchStr = "Selenium";
+        searchBox.sendKeys(searchStr);
+        WebElement searchButton = driver.findElement(By.cssSelector("#search-form > fieldset > button"));
+        searchButton.click();
 
         driver.close();
     }
