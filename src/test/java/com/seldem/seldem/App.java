@@ -3,6 +3,7 @@ package com.seldem.seldem;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -12,9 +13,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         WebDriver driver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver","chromedriver.exe");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
-        driver.get("file:///F:/Workspace/Omnitech/Learning-Grails/seldem/alerts.html");
+        driver.get("https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select");
 
         // Using Locators in Selenium
         /*
@@ -82,7 +83,8 @@ public class App {
             System.out.println(element.getText());
         }*/
 
-        WebElement basicAlertButton = driver.findElement(By.cssSelector("body > button:nth-child(2)"));
+        // working with alerts
+        /*WebElement basicAlertButton = driver.findElement(By.cssSelector("body > button:nth-child(2)"));
         WebElement confirmationAlertButton = driver.findElement(By.cssSelector("body > button:nth-child(5)"));
         WebElement promptAlertButton = driver.findElement(By.cssSelector("body > button:nth-child(8)"));
 
@@ -106,7 +108,13 @@ public class App {
 
         System.out.println(promptAlert.getText());
         promptAlert.sendKeys("Laurentiu");
-        promptAlert.accept();
+        promptAlert.accept();*/
+
+        // working with select options
+        driver.switchTo().frame(driver.findElement(By.id("iframeResult")));
+        WebElement selectable = driver.findElement(By.id("cars"));
+        Select select = new Select(selectable);
+        select.selectByIndex(1);
 
         //driver.close();
     }
