@@ -13,7 +13,7 @@ public class App {
         System.setProperty("webdriver.chrome.driver","chromedriver.exe");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
-        driver.get("https://www.wikipedia.org/");
+        driver.get("file:///F:/Workspace/Omnitech/Learning-Grails/seldem/tablePage.html");
 
         // Using Locators in Selenium
         /*
@@ -66,11 +66,16 @@ public class App {
         }*/
 
         // Sending text to Selenium driver
-        WebElement searchBox = driver.findElement(By.id("searchInput"));
+        /*WebElement searchBox = driver.findElement(By.id("searchInput"));
         String searchStr = "Selenium";
         searchBox.sendKeys(searchStr);
         WebElement searchButton = driver.findElement(By.cssSelector("#search-form > fieldset > button"));
-        searchButton.click();
+        searchButton.click();*/
+
+        // Working with tables
+        System.out.println(driver.findElement(By.xpath("/html/body/table/tbody[1]/tr[2]/td[1]")).getText());
+        System.out.println(driver.findElement(By.xpath("/html/body/table/tbody[1]/tr[1]/th[1]")).getText());
+
 
         driver.close();
     }
