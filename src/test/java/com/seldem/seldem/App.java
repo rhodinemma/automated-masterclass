@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -73,9 +74,14 @@ public class App {
         searchButton.click();*/
 
         // Working with tables
-        System.out.println(driver.findElement(By.xpath("/html/body/table/tbody[1]/tr[2]/td[1]")).getText());
-        System.out.println(driver.findElement(By.xpath("/html/body/table/tbody[1]/tr[1]/th[1]")).getText());
+        /*System.out.println(driver.findElement(By.xpath("/html/body/table/tbody[1]/tr[2]/td[1]")).getText());
+        System.out.println(driver.findElement(By.xpath("/html/body/table/tbody[1]/tr[1]/th[1]")).getText());*/
 
+        List<WebElement> listOfWebElements = driver.findElements(By.xpath("/html/body/table/tbody[1]/tr"));
+
+        for(WebElement element : listOfWebElements){
+            System.out.println(element.getText());
+        }
 
         driver.close();
     }
