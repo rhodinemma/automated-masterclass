@@ -1,6 +1,7 @@
 package com.seldem.seldem;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,9 +13,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         WebDriver driver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver","chromedriver.exe");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
-        driver.get("file:///F:/Workspace/Omnitech/Learning-Grails/seldem/tablePage.html");
+        driver.get("https://www.udemy.com/course/selenium-webdriver-web-based-automation-testing/");
 
         // Using Locators in Selenium
         /*
@@ -77,12 +78,15 @@ public class App {
         /*System.out.println(driver.findElement(By.xpath("/html/body/table/tbody[1]/tr[2]/td[1]")).getText());
         System.out.println(driver.findElement(By.xpath("/html/body/table/tbody[1]/tr[1]/th[1]")).getText());*/
 
-        List<WebElement> listOfWebElements = driver.findElements(By.xpath("/html/body/table/tbody[1]/tr"));
-
+        /*List<WebElement> listOfWebElements = driver.findElements(By.xpath("/html/body/table/tbody[1]/tr"));
         for(WebElement element : listOfWebElements){
             System.out.println(element.getText());
-        }
+        }*/
 
-        driver.close();
+        WebElement backToReposClick = driver.findElement(By.cssSelector("#udemy > div.main-content-wrapper > div.main-content > div > div > div.paid-course-landing-page__container > div.paid-course-landing-page__body > div.course-landing-page__main-content > div:nth-child(3) > div > button > span"));
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", backToReposClick);
+
+        //driver.close();
     }
 }
