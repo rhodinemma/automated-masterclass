@@ -1,10 +1,9 @@
 package com.seldem.seldem;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -15,7 +14,7 @@ public class App {
         System.setProperty("webdriver.chrome.driver","chromedriver.exe");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
-        driver.get("https://www.udemy.com/course/selenium-webdriver-web-based-automation-testing/");
+        driver.get("file:///F:/Workspace/Omnitech/Learning-Grails/seldem/alerts.html");
 
         // Using Locators in Selenium
         /*
@@ -83,9 +82,31 @@ public class App {
             System.out.println(element.getText());
         }*/
 
-        WebElement backToReposClick = driver.findElement(By.cssSelector("#udemy > div.main-content-wrapper > div.main-content > div > div > div.paid-course-landing-page__container > div.paid-course-landing-page__body > div.course-landing-page__main-content > div:nth-child(3) > div > button > span"));
+        WebElement basicAlertButton = driver.findElement(By.cssSelector("body > button:nth-child(2)"));
+        WebElement confirmationAlertButton = driver.findElement(By.cssSelector("body > button:nth-child(5)"));
+        WebElement promptAlertButton = driver.findElement(By.cssSelector("body > button:nth-child(8)"));
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", backToReposClick);
+        //Basic Alert Demo
+        basicAlertButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert basicAlert = driver.switchTo().alert();
+        basicAlert.accept();
+
+        //Confirmation Alert Demo
+        confirmationAlertButton.click();
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert confirmationAlert = driver.switchTo().alert();
+        confirmationAlert.dismiss();
+
+        //Prompt Alert Demo
+        promptAlertButton.click();
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert promptAlert = driver.switchTo().alert();
+
+        System.out.println(promptAlert.getText());
+        promptAlert.sendKeys("Laurentiu");
+        promptAlert.accept();
 
         //driver.close();
     }

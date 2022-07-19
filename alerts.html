@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to display a basic alert.</p>
+
+<button onclick="myFunction()">Display Alert</button>
+
+<script>
+function myFunction() {
+  alert("Hello! I am an alert box!");
+}
+</script>
+
+
+<p>Click the button to display a confirmation alert.</p>
+
+<button onclick="confirmationAlert()">Confirmation Alert</button>
+
+<script>
+function confirmationAlert() {
+  confirm("Press a button!");
+}
+</script>
+
+
+<p>Click the button to demonstrate a prompt alert.</p>
+
+<button onclick="promptAlert()">Prompt Alert</button>
+
+<p id="demo"></p>
+
+<script>
+function promptAlert() {
+  var person = prompt("Please enter your name", "John Doe");
+  if (person != null) {
+    document.getElementById("demo").innerHTML =
+    "Hello " + person + "! How are you today?";
+  }
+}
+</script>
+
+</body>
+</html>
